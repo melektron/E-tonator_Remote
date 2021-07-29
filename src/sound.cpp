@@ -2,7 +2,7 @@
 
 
 /*
-In order to reduce memory and storage useage, the melody is split into treble_melody and bass_melody 
+In order to reduce memory and storage usage, the melody is split into treble_melody and bass_melody 
 (same goes for durations). In the original code, the entire song was built from one large block of notes.
 The song played the treble theme twice, then the bass part once and then the treble theme twice again and
 the bass part once. 
