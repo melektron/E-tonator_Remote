@@ -11,6 +11,12 @@ unsigned long lastAutoRepeat[4] = {0, 0, 0, 0};
 bool gamePaused = true;                 // flag to indicate wether or not the game is paused
 
 
+// this is an array for the contents of custom characters.
+// it will be initialized with all pixels off, therefore having an empty character.
+// it will also be filled with sections of the frame buffer and then written to the custom chars on the display for rendering
+
+
+
 void resetGame() {
     lastTickTime = millis();
     gamePaused = true;
@@ -20,6 +26,7 @@ void resetGame() {
 
 // this function gets executed by the game core whenever a frame has to be rendered
 void D_drawFrame(uint16_t frame[D_ROWS], uint8_t row, uint8_t col, uint16_t score, uint16_t rows_cleared) {
+    // rendering code to be added
     return;
 }
 
@@ -113,5 +120,19 @@ void D_I_keyStateChangeHandler() {
 
 // on initializing the game, we reset everything to the defaults
 void D_I_initialize() {
+    // reseting all game states (score, frame buffer, ...)
     resetGame();
+    // clearing the display and setting it up with the custom chars in the first 4 chars of each line for rendering
+    // this will make a layout like this: 
+
+    // 0123____________ //
+    // 4567____________ //
+    
+    // where the numbers indicate the character code in decimal for the character. 
+    // This way, if a custom character is written to char code 0, it will be rendered in the top left.
+    lcd.clear();
+    for (uint8_t i = 0; i < 8; i++) {
+        lcd.setCursor(i % 4, i / 4);
+        lcd.write((uint8_t)i);
+    }
 }
