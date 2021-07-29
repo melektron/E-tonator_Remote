@@ -176,10 +176,8 @@ void loop() {
   }
 
 
+  // the music should run even when not in the menu so it is outside of the current_menu_selection selector
   music_LoopFunction();
-
-
-
 
   // mode dependet code to execute without user input
   if (!menu_mode) {
