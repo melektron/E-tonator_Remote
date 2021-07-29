@@ -80,6 +80,8 @@ void handle_keystate_change() {
         stateChange_MODE_SAFE_F();
       } else if (current_menu_selection == MODE_TOGGLE) {
         stateChange_MODE_TOGGLE();
+      } else if (current_menu_selection == MODE_TETRIS) {
+        stateChange_MODE_TETRIS();
       }
     }
   }
@@ -191,6 +193,8 @@ void loop() {
       loopFunc_MODE_SAFE_F();
     } else if (current_menu_selection == MODE_TOGGLE) {
       loopFunc_MODE_TOGGLE();
+    } else if (current_menu_selection == MODE_TETRIS) {
+      loopFunc_MODE_TETRIS();
     }
     // code for other modes here
   }

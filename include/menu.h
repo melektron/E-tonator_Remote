@@ -13,6 +13,7 @@
 #define MODE_TOGGLE 3
 #define MODE_TIMED_F 4
 #define MODE_FLEX 5
+#define MODE_TETRIS 6
 
 
 // variables that have to be accesed externaly

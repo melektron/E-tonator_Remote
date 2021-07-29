@@ -31,6 +31,7 @@ extern void D_drawFrame(uint16_t frame[D_ROWS], uint8_t row, uint8_t col, uint16
 // these functions have to be called by the implementation or engine
 
 void G_on_game_tick();	// a game tick should be envoked about every second. a tetris block automatically lowers on every game tick
+void G_ResetGame();     // this function resets everything to the default state
 // these functions handle user input
 void G_key_up();		// used for rotation
 void G_key_down();		// used for move down

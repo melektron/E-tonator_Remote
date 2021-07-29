@@ -6,10 +6,11 @@ char menu_entries [10][15] {
     "Normal Fire",
     "Toggle",
     "Timed Fire",
-    "Flex Mode!!"
+    "Flex Mode!!",
+    "Tetris"
 };
 
-int8_t nr_menu_entries = 6;
+int8_t nr_menu_entries = 7;
 
 
 bool menu_mode = false;   // flag to indicate if menue is currently active
@@ -68,6 +69,8 @@ void menu_handler(){
       drawInitialize_MODE_SAFE_F();
     } else if (current_menu_selection == MODE_TOGGLE) {
       drawInitialize_MODE_TOGGLE();
+    } else if (current_menu_selection == MODE_TETRIS) {
+      drawInitialize_MODE_TETRIS();
     }
   }
 }

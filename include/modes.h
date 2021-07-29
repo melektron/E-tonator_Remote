@@ -4,6 +4,7 @@
 #include "lcd_chars.h"
 #include "sound.h"
 #include "nl_pot.h"
+#include "game_interface.h"
 
 
 // some definitions for some characters
@@ -51,3 +52,8 @@ void drawInitialize_MODE_TOGGLE();
 void loopFunc_MODE_FLEX();
 void stateChange_MODE_FLEX();
 void drawInitialize_MODE_FLEX();
+
+// mode: MODE_TETRIS
+void loopFunc_MODE_TETRIS();
+void stateChange_MODE_TETRIS();
+void drawInitialize_MODE_TETRIS();

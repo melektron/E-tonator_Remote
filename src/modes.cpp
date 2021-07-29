@@ -223,6 +223,16 @@ void drawInitialize_MODE_TOGGLE() {
   }
 }
 
+// mode: MODE_TETRIS
+void loopFunc_MODE_TETRIS() {
+  D_I_loopFunc();
+}
+void stateChange_MODE_TETRIS() {
+  D_I_keyStateChangeHandler();
+}
+void drawInitialize_MODE_TETRIS() {
+  D_I_initialize();
+}
 
 // mode: MODE_FELX
 void loopFunc_MODE_FLEX() {return;}
