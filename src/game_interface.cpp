@@ -87,7 +87,7 @@ void D_drawFrame(uint16_t frame[D_ROWS], uint8_t row, uint8_t col, uint16_t scor
                 // so we shift them to the right for the entire width of the row minus the colomn number. 
                 // lastly everything gets anded with a 16 bit 1 to get the pixel value as 1 or 0 in the 8 bit integer
                 uint8_t pixel_state = (frame_row >> (15 - pixel_col)) & (uint16_t)1;
-                Serial.print(pixel_state);  // print the pixel for debugging
+                //Serial.print(pixel_state);  // print the pixel for debugging
 
                 // for writing a pixel to a chunk of the display, we need to rotate everything by 90 degrees
                 // because the characters on the display will be oriented that way during gameplay.
@@ -97,7 +97,7 @@ void D_drawFrame(uint16_t frame[D_ROWS], uint8_t row, uint8_t col, uint16_t scor
                 //                        \ /
                 game_frame_section[chunk_pixel_col] |= (pixel_state << chunk_pixel_row);
             }
-            Serial.println();   // also print the next line for debugging
+            //Serial.println();   // also print the next line for debugging
         }
         // once the chunk buffer has been loaded with the correct pixel values
         // we update that chunk on the display
@@ -108,7 +108,7 @@ void D_drawFrame(uint16_t frame[D_ROWS], uint8_t row, uint8_t col, uint16_t scor
     lcd.setCursor(5, 0); lcd.print("SC:"); lcd.setCursor(8, 0); lcd.print(score);
     lcd.setCursor(5, 0); lcd.print("RC:"); lcd.setCursor(8, 0); lcd.print(rows_cleared);
     // print score for debugging
-    Serial.print("Score: "); Serial.println(score);
+    //Serial.print("Score: "); Serial.println(score);
     return;
 }
 
@@ -120,7 +120,7 @@ void D_I_loopFunc() {
         if (millis() > lastTickTime + tick_delay) {
             G_on_game_tick();
             lastTickTime = millis();
-            Serial.println("Game Tick");
+            //Serial.println("Game Tick");
         }
     }
 }
