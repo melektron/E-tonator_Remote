@@ -8,7 +8,7 @@ the mode file itself (modes.cpp) is not filled with game code.
 #include <Keypad.h>
 #include "game.h"
 
-
+// objects and variables from other modules
 extern LiquidCrystal lcd;
 extern uint8_t  keystates[16];
 

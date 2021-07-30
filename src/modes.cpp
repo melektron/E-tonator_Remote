@@ -263,6 +263,12 @@ void stateChange_MODE_FLEX() {
   return;
 }
 void drawInitialize_MODE_FLEX() {
+  // initialize custom chars required for this mode
+  lcd.createChar(LCD_CHAR_PLAY, LCD_CHAR_play);
+  lcd.createChar(LCD_CHAR_PAUSE, LCD_CHAR_pause);
+  lcd.createChar(LCD_CHAR_BACK_T_S, LCD_CHAR_back_to_start);
+
+  // building the GUI
   lcd.setCursor(0, 0);
   lcd.print("Flex Mode!!");
   lcd.setCursor(3, 1);
