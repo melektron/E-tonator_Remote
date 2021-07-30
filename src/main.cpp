@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 #include <Keypad.h>
+//#include "avr8-stub.h"  // debugger
 #include "menu.h"
 #include "modes.h"
 #include "sound.h"
@@ -93,6 +94,9 @@ void handle_keystate_change() {
 
 
 void setup() {
+  // start the debugger
+  //debug_init();
+
   // set up the LCD's number of columns and rows:
   lcd.begin(16, 2);
   // initialize custom chars

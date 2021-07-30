@@ -308,7 +308,7 @@ void G_renderBlock(G_tetris_block *block, uint8_t rot, uint8_t frame_row, uint8_
 {
 	for (uint8_t row = 0; row < block->blocksize; row++)	// for each row in a block
 	{
-		uint16_t tmprow = G_frame_buffer[frame_row + row] | (block->blockstate[rot][row] << 12) >> frame_col; // overlay the block row on the corresponding framebuffer row by bitshifting the block row right by the designated amount of columns
+		uint16_t tmprow = G_frame_buffer[frame_row + row] | ((uint16_t)(block->blockstate[rot][row]) << 12) >> frame_col; // overlay the block row on the corresponding framebuffer row by bitshifting the block row right by the designated amount of columns
 		G_frame_buffer[frame_row + row] = tmprow;	// replace the old framebuffer row with the newly created one
 	}
 }
@@ -318,7 +318,7 @@ void G_derenderBlock(G_tetris_block* block, uint8_t rot, uint8_t frame_row, uint
 {
 	for (uint8_t row = 0; row < block->blocksize; row++) // for each row in a block
 	{
-		uint16_t tmprow = G_frame_buffer[frame_row + row] & ~((block->blockstate[rot][row] << 12) >> frame_col);	// disable all active tiles using bitwise-and with the inverted block row state, bitshifting to the right as in G_renderBlock()
+		uint16_t tmprow = G_frame_buffer[frame_row + row] & ~(((uint16_t)(block->blockstate[rot][row]) << 12) >> frame_col);	// disable all active tiles using bitwise-and with the inverted block row state, bitshifting to the right as in G_renderBlock()
 		G_frame_buffer[frame_row + row] = tmprow;	// replace old framebuffer row with the new one
 	}
 }
@@ -333,20 +333,20 @@ bool G_checkCollision(G_tetris_block* block, uint8_t rot, uint8_t frame_row, uin
 	{
 		// first we check if the block collides with other already existing blocks on the buffer.
 		// for this to work, the block itself or all previous states of itself have to be derendered before calling this function.
-		if (G_frame_buffer[frame_row + row] & (block->blockstate[rot][row] << 12) >> frame_col)
+		if (G_frame_buffer[frame_row + row] & ((uint16_t)(block->blockstate[rot][row]) << 12) >> frame_col)
 		{
 			Serial.println("Block colliding");
 			return 1;	// returns 1 for colliding
 		}
 		/*
 		// next we check if the block has reached the bottom of the screen
-		if (frame_row + row >= D_ROWS && block->blockstate[rot][row])	// if a block row that contains active tiles is outside the bottom of the screen
+		if (frame_row + row >= D_ROWS && (uint16_t)(block->blockstate[rot][row]))	// if a block row that contains active tiles is outside the bottom of the screen
 		{
 			return 1;
 		}
 		// next we check if the block has reached the right side of the screen
 		uint32_t check = 0;
-		check = (block->blockstate[rot][row] << 12+16) >> frame_col;	// put values on a 32 bit variable to check for all bits overflowing the 16 bit space
+		check = ((uint16_t)(block->blockstate[rot][row]) << 12+16) >> frame_col;	// put values on a 32 bit variable to check for all bits overflowing the 16 bit space
 		if (check & 0x0000ffff)		// by performing binary and with zeros in the first 16 bits and ones in the second 16 bits only ones that have overflowed the 16 bit space will stay and if this value is true, meaning there are any bits left there, the block has collided with the right wall
 		{
 			return 1;
@@ -593,7 +593,7 @@ void G_on_game_tick()
 		}
 		else
 		{
-			if (G_spawnBlock(G_rand_block()))
+			if (G_spawnBlock(/*G_rand_block()*/&G_block_T))
 			{
 				Serial.println("Initial Render");
 				G_RenderFrame(G_frame_buffer, current_row, current_col, G_score, G_rows_cleared);
