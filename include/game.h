@@ -27,6 +27,12 @@ extern void D_drawFrame(uint16_t frame[D_ROWS], uint8_t row, uint8_t col, uint16
 #define G_rand_sample(type, list) (list[rand() % (sizeof(list)/sizeof(type))])	// function to return a random entry of an array (only the rng function needs to be changed here)
 
 
+// controll functions
+// these functions can be controlled by the implementation of engine
+void G_Pause();
+void G_Continue();
+
+
 
 // input functions
 // these functions have to be called by the implementation or engine

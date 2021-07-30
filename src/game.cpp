@@ -593,7 +593,7 @@ void G_on_game_tick()
 		}
 		else
 		{
-			if (G_spawnBlock(/*G_rand_block()*/&G_block_T))
+			if (G_spawnBlock(G_rand_block()))
 			{
 				Serial.println("Initial Render");
 				G_RenderFrame(G_frame_buffer, current_row, current_col, G_score, G_rows_cleared);
