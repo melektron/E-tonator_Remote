@@ -335,6 +335,7 @@ bool G_checkCollision(G_tetris_block* block, uint8_t rot, uint8_t frame_row, uin
 		// for this to work, the block itself or all previous states of itself have to be derendered before calling this function.
 		if (G_frame_buffer[frame_row + row] & (block->blockstate[rot][row] << 12) >> frame_col)
 		{
+			Serial.println("Block colliding");
 			return 1;	// returns 1 for colliding
 		}
 		/*
@@ -388,6 +389,7 @@ bool G_spawnBlock(G_tetris_block* block_type)
 	current_block = block_type;		// set the given blocktype
 	current_row = 1;				// the row has to be 1
 	current_col = G_rand_block_init_pos();	// set the column to a random valid position given by the G_rand_block_init_pos() macro
+	Serial.print("rand block pos: "); Serial.println(current_col);
 	current_rot = 0;				// the rotation is always 0
 	// the previous values have to be equal to the current values 
 	previous_row = current_col;
@@ -557,6 +559,7 @@ void G_on_game_tick()
 {
 	if (!G_paused)
 	{
+		Serial.println("received gametick");
 		// if the game is not paused
 		if (G_running)
 		{
@@ -592,6 +595,7 @@ void G_on_game_tick()
 		{
 			if (G_spawnBlock(G_rand_block()))
 			{
+				Serial.println("Initial Render");
 				G_RenderFrame(G_frame_buffer, current_row, current_col, G_score, G_rows_cleared);
 				G_running = true;
 			}

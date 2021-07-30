@@ -1,7 +1,8 @@
 
-
+#include <Arduino.h>
 #include <stdint.h>
 #include <stdlib.h>
+
 
 #define D_ROWS 20			// Number of rows there are in the tetris game (Should not be changed)
 #define D_COLS 16			// Number of cols there are in the tetris game (Should not be changed)

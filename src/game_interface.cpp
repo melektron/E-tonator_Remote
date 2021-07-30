@@ -15,6 +15,15 @@ bool gamePaused = true;                 // flag to indicate wether or not the ga
 // it will be initialized with all pixels off, therefore having an empty character.
 // it will also be filled with sections of the frame buffer and then written to the custom chars on the display for rendering
 
+byte game_frame_section[8] = {
+  B11011,
+  B11011,
+  B11011,
+  B11011,
+  B11011,
+  B11011,
+  B11011,
+};
 
 
 void resetGame() {
@@ -27,6 +36,12 @@ void resetGame() {
 // this function gets executed by the game core whenever a frame has to be rendered
 void D_drawFrame(uint16_t frame[D_ROWS], uint8_t row, uint8_t col, uint16_t score, uint16_t rows_cleared) {
     // rendering code to be added
+    
+    
+    lcd.createChar(0, game_frame_section);
+    Serial.print("Score: "); Serial.println(score);
+    
+    
     return;
 }
 
@@ -38,6 +53,7 @@ void D_I_loopFunc() {
         if (millis() > lastTickTime + tick_delay) {
             G_on_game_tick();
             lastTickTime = millis();
+            Serial.println("Game Tick");
         }
     }
 }
